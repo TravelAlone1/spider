@@ -46,16 +46,20 @@ public class SpiderTask implements Runnable {
             }
 
             String content = downLoader.downLoad(url);
-            String regEx = "https://movie.douban.com/subject/([0-9]{7}|[0-9]{8})/?from=playing_poster";
+            String regEx = "https:\\/\\/movie.douban.com\\/subject\\/([0-9]{7}|[0-9]{8})\\/\\?from=playing_poster";
+            String regEx1= "https:\\/\\/movie.douban.com\\/subject\\/([0-9]{7}|[0-9]{8})\\/\\?from=subject-page";
             Pattern p = Pattern.compile(regEx);
+            Pattern pattern = Pattern.compile(regEx1);
             Matcher matcher = p.matcher(url);
+            Matcher matcher1 = pattern.matcher(url);
 
             boolean rs = matcher.find();
+            boolean b = matcher1.find();
             System.out.println(rs);
 
             //System.out.println(content);
             WebPage webPage = null;
-            if (!Strings.isNullOrEmpty(content)&& (rs || url=="https://movie.douban.com/cinema/nowplaying/ganzhou/")) {
+            if (!Strings.isNullOrEmpty(content)&& (rs || b  || url=="https://movie.douban.com/cinema/nowplaying/ganzhou/")) {
                 webPage = new WebPage();
                 webPage.setUrl(url);
                 webPage.setContent(content);

@@ -13,9 +13,9 @@ public class SpiderTaskTest {
 
     @Test
     public void test(){
-        String str = "https://movie.douban.com/subject/26336253/photos?type=R";
+        String str = "https://movie.douban.com/subject/27125418/?from=subject-page";
 
-        String regEx = "https://movie.douban.com/subject/([0-9]{7}|[0-9]{8})/?from=playing_poster";
+        String regEx = "https://movie.douban.com/subject/([0-9]{7}|[0-9]{8})/\\?from=subject-page";
 
         Pattern pattern = Pattern.compile(regEx);
 
